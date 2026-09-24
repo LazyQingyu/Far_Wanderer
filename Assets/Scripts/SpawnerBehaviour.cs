@@ -1,9 +1,10 @@
-using NUnit.Framework;
+
 using System;
 using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
+using System.Collections;
+
+
 
 public class SpawnerBehaviour : MonoBehaviour
 {
@@ -22,20 +23,41 @@ public class SpawnerBehaviour : MonoBehaviour
                          {0,0,0,1,0,0,0}
                         };
 
+    enum DirectionMovement
+    {
+        Left,
+        Right,
+        Down,
+        Up
+    };
+
     List<GameObject> listAlien = new List<GameObject>();
 
     public GameObject firstEnemy;
     public GameObject secondEnemy;
     public GameObject thirdEnemy;
 
+    public float delaysBeforeAliensMovement;
+    public float aliensMovementSpeed;
+
+    Coroutine moveAliensCoroutine;
+
+    float AxeX = 8.5f;
+    float AxeY = 4.5f;
+
     void Start()
     {
         InstantiateAliensGroup(-3, 4, aliensMap2);
+        moveAliensCoroutine = null;
+
     }
 
     private void FixedUpdate()
     {
-        moveHorizontaly(listAlien, -1);
+        if(moveAliensCoroutine == null)
+        {
+            moveAliensCoroutine = StartCoroutine(MoveAliens(delaysBeforeAliensMovement));
+        }
     }
     public void InstantiateAliensGroup(int startX, int startY, int[,] enemyMap )
     {
@@ -83,14 +105,14 @@ public class SpawnerBehaviour : MonoBehaviour
         }
     }
 
-
+    //Region AlienSwamMovement
     void moveHorizontaly(List<GameObject> aliansWhoIsAlive, float moveBy)
     {
         foreach(GameObject alien in aliansWhoIsAlive)
         {
             float currentAlienPosX = alien.transform.position.x;
             float currentAlienPosY = alien.transform.position.y;
-            if(CanMoveHorizontaly( currentAlienPosX + moveBy) && CanMove(alien, aliansWhoIsAlive, ("Horizontal",moveBy)))
+            if(CanMoveHorizontaly( currentAlienPosX + moveBy) && IsMyNextPosAllowed(alien, aliansWhoIsAlive, ("Horizontal",moveBy)))
             {
                 alien.transform.position = new Vector3(currentAlienPosX + moveBy, currentAlienPosY, 0);
             }
@@ -99,31 +121,36 @@ public class SpawnerBehaviour : MonoBehaviour
 
     bool CanMoveHorizontaly(float pos)
     {
-        return (-8.5f < pos && pos < 8.5f);
+        return (-AxeX < pos && pos < AxeX);
     }
 
-    void moveVerticaly(List<GameObject> aliansWhoIsAlive, float maxPossibleMove, float moveBy)
+    void moveVerticaly(List<GameObject> aliansWhoIsAlive, float moveBy)
     {
         foreach (GameObject alien in aliansWhoIsAlive)
         {
             float currentAlienPosX = alien.transform.position.x;
             float currentAlienPosY = alien.transform.position.y;
-            if (currentAlienPosY + moveBy < maxPossibleMove && CanMove(alien, aliansWhoIsAlive, ("Verticaly", moveBy)))
+            if (CanMoveVerticaly(currentAlienPosY + moveBy) && IsMyNextPosAllowed(alien, aliansWhoIsAlive, ("Verticaly", moveBy)))
             {
                 alien.transform.position = new Vector3(currentAlienPosX, currentAlienPosY + moveBy, 0);
             }
         }
     }
 
-    bool CanMove(GameObject alien, List<GameObject> alienSwam, (string,float) move)
+    bool CanMoveVerticaly(float pos)
+    {
+        return (-AxeY < pos && pos < AxeY);
+    }
+
+    bool IsMyNextPosAllowed(GameObject alien, List<GameObject> alienSwam, (string,float) move)
     {
 
         (float, float) alienNextPos = getNextPos(alien, move);
-        foreach( GameObject oneAlienInSwamp in alienSwam)
+        foreach( GameObject oneAlienInSwarm in alienSwam)
         {
-            if (!IsMySelf(alien, oneAlienInSwamp))
+            if (!IsMySelf(alien, oneAlienInSwarm))
             {
-                if (HaveSamePos(alienNextPos, oneAlienInSwamp)){
+                if (HaveSamePos(alienNextPos, oneAlienInSwarm)){
                     return false;
                 }
             }
@@ -131,14 +158,14 @@ public class SpawnerBehaviour : MonoBehaviour
         return true;
     }
 
-    bool IsMySelf(GameObject alien, GameObject oneAlienInSwam)
+    bool IsMySelf(GameObject alien, GameObject oneAlienInSwarm)
     {
-        return (alien.transform.position.x == oneAlienInSwam.transform.position.x && alien.transform.position.y == oneAlienInSwam.transform.position.y);
+        return (alien.transform.position.x == oneAlienInSwarm.transform.position.x && alien.transform.position.y == oneAlienInSwarm.transform.position.y);
     }
 
-    bool HaveSamePos((float, float) posAlienAfterMove, GameObject oneAlienInSwam)
+    bool HaveSamePos((float, float) posAlienAfterMove, GameObject oneAlienInSwarm)
     {
-        return (posAlienAfterMove.Item1 == oneAlienInSwam.transform.position.x && posAlienAfterMove.Item2 == oneAlienInSwam.transform.position.y);
+        return (posAlienAfterMove.Item1 == oneAlienInSwarm.transform.position.x && posAlienAfterMove.Item2 == oneAlienInSwarm.transform.position.y);
     }
 
     (float, float) getNextPos(GameObject alien,(string, float) move)
@@ -157,7 +184,59 @@ public class SpawnerBehaviour : MonoBehaviour
 
         return nextPos;
     }
+    //EndRegion AlienSwamMovement
 
+    DirectionMovement MoveProbability()
+    {
+        int probability = UnityEngine.Random.Range(0, 101);
 
+        if(probability < 5)
+        {
+            return DirectionMovement.Down;
+        }
+        else if(5 < probability && probability < 15)
+        {
+            return DirectionMovement.Up;
+        }
+        else if(15 < probability && probability < 52)
+        {
+            return DirectionMovement.Left;
+        }
+        else
+        {
+            return DirectionMovement.Right;
+        }   
+    }
+
+    void AlienSwarmMovement()
+    {
+        
+        DirectionMovement randomMove = MoveProbability();
+        
+        switch (randomMove)
+        {
+            case DirectionMovement.Left:
+                moveHorizontaly(listAlien, -aliensMovementSpeed);
+                break;
+            case DirectionMovement.Right:
+                moveHorizontaly(listAlien, aliensMovementSpeed);
+                break;
+            case DirectionMovement.Down:
+                moveVerticaly(listAlien, -aliensMovementSpeed);
+                break;
+            case DirectionMovement.Up:
+                moveVerticaly(listAlien, aliensMovementSpeed);
+                break;
+        } 
+    }
+
+    IEnumerator MoveAliens(float time)
+    {
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime(time);
+            AlienSwarmMovement();
+        }
+    }
 
 }
