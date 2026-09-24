@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 561145704}
   - component: {fileID: 561145705}
   - component: {fileID: 561145706}
+  - component: {fileID: 561145707}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -382,6 +383,7 @@ MonoBehaviour:
   thirdEnemy: {fileID: 555527744897418365, guid: bd93400d7984fbb4a8adad8cabf8988d, type: 3}
   delaysBeforeAliensMovement: 0.1
   aliensMovementSpeed: 1
+  raduisAlien: 0.5
 --- !u!114 &561145705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +413,19 @@ MonoBehaviour:
   projectil: {fileID: 5868644875190298141, guid: a52dee8bc6e2023bfa48b3681c29f26e, type: 3}
   playerPosition: {fileID: 1016490378}
   projectilSpeed: 30
+--- !u!114 &561145707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561145699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6095aee9e955fbe9b801a946c2a3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreBehaviour
+  scoreText: {fileID: 1464418201}
 --- !u!1001 &1012918779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -638,7 +653,7 @@ GameObject:
   - component: {fileID: 1464418203}
   m_Layer: 5
   m_Name: Score
-  m_TagString: Untagged
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
