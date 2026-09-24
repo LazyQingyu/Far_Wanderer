@@ -45,6 +45,8 @@ public class SpawnerBehaviour : MonoBehaviour
     float AxeX = 8.5f;
     float AxeY = 4.5f;
 
+    public float raduisAlien;
+
     void Start()
     {
         InstantiateAliensGroup(-3, 4, aliensMap2);
@@ -106,22 +108,30 @@ public class SpawnerBehaviour : MonoBehaviour
     }
 
     //Region AlienSwamMovement
+
+    bool InZoneAllowed(float pos, string movement)
+    {
+        if (movement == "Horizontal")
+        {
+            return (-AxeX < pos && pos < AxeX);
+        }
+        else
+        {
+            return (-AxeY < pos && pos < AxeY);
+        }
+    }
+
     void moveHorizontaly(List<GameObject> aliansWhoIsAlive, float moveBy)
     {
         foreach(GameObject alien in aliansWhoIsAlive)
         {
             float currentAlienPosX = alien.transform.position.x;
             float currentAlienPosY = alien.transform.position.y;
-            if(CanMoveHorizontaly( currentAlienPosX + moveBy) && IsMyNextPosAllowed(alien, aliansWhoIsAlive, ("Horizontal",moveBy)))
+            if(InZoneAllowed(currentAlienPosX + moveBy, "Horizontal") && IsMyNextPosAllowed(alien, aliansWhoIsAlive, ("Horizontal",moveBy)))
             {
                 alien.transform.position = new Vector3(currentAlienPosX + moveBy, currentAlienPosY, 0);
             }
         }
-    }
-
-    bool CanMoveHorizontaly(float pos)
-    {
-        return (-AxeX < pos && pos < AxeX);
     }
 
     void moveVerticaly(List<GameObject> aliansWhoIsAlive, float moveBy)
@@ -130,16 +140,11 @@ public class SpawnerBehaviour : MonoBehaviour
         {
             float currentAlienPosX = alien.transform.position.x;
             float currentAlienPosY = alien.transform.position.y;
-            if (CanMoveVerticaly(currentAlienPosY + moveBy) && IsMyNextPosAllowed(alien, aliansWhoIsAlive, ("Verticaly", moveBy)))
+            if (InZoneAllowed(currentAlienPosY + moveBy, "Verticaly") && IsMyNextPosAllowed(alien, aliansWhoIsAlive, ("Verticaly", moveBy)))
             {
                 alien.transform.position = new Vector3(currentAlienPosX, currentAlienPosY + moveBy, 0);
             }
         }
-    }
-
-    bool CanMoveVerticaly(float pos)
-    {
-        return (-AxeY < pos && pos < AxeY);
     }
 
     bool IsMyNextPosAllowed(GameObject alien, List<GameObject> alienSwam, (string,float) move)
@@ -148,9 +153,9 @@ public class SpawnerBehaviour : MonoBehaviour
         (float, float) alienNextPos = getNextPos(alien, move);
         foreach( GameObject oneAlienInSwarm in alienSwam)
         {
-            if (!IsMySelf(alien, oneAlienInSwarm))
+            if (!HaveSamePos(alien, oneAlienInSwarm))
             {
-                if (HaveSamePos(alienNextPos, oneAlienInSwarm)){
+                if (CollisionAfterMove(alienNextPos, oneAlienInSwarm)){
                     return false;
                 }
             }
@@ -158,14 +163,19 @@ public class SpawnerBehaviour : MonoBehaviour
         return true;
     }
 
-    bool IsMySelf(GameObject alien, GameObject oneAlienInSwarm)
+    bool HaveSamePos(GameObject alien, GameObject oneAlienInSwarm)
     {
         return (alien.transform.position.x == oneAlienInSwarm.transform.position.x && alien.transform.position.y == oneAlienInSwarm.transform.position.y);
     }
 
-    bool HaveSamePos((float, float) posAlienAfterMove, GameObject oneAlienInSwarm)
+    bool CollisionAfterMove((float, float) posAlienAfterMove, GameObject oneAlienInSwarm)
     {
-        return (posAlienAfterMove.Item1 == oneAlienInSwarm.transform.position.x && posAlienAfterMove.Item2 == oneAlienInSwarm.transform.position.y);
+      float distanceBetweenCircles = Mathf.Sqrt(Mathf.Pow(posAlienAfterMove.Item1 - oneAlienInSwarm.transform.position.x, 2) + Mathf.Pow(posAlienAfterMove.Item2 - oneAlienInSwarm.transform.position.y, 2));
+      if (distanceBetweenCircles < raduisAlien * 2)
+      {
+          return true;
+      }
+      return false;
     }
 
     (float, float) getNextPos(GameObject alien,(string, float) move)

@@ -24,7 +24,7 @@ public class ProjectilBehaviour : MonoBehaviour
         {
             if(newProjectil == null)
             {
-                newProjectil = Instantiate(projectil, playerPosition.transform.position, Quaternion.identity);
+                newProjectil = Instantiate(projectil, playerPosition.transform.position+Vector3.up, Quaternion.identity);
                 StartCoroutine(moveProjectil(newProjectil));
             }
         }
@@ -37,7 +37,10 @@ public class ProjectilBehaviour : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             newProjectil.transform.position += new Vector3(0, projectilSpeed * Time.deltaTime, 0);
         }
-        Destroy(newProjectil);
+        if(newProjectil != null){
+            Destroy(newProjectil);
+        }
+
     }
 
 }
