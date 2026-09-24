@@ -54,10 +54,10 @@ public class SpawnerBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(moveAliensCoroutine == null)
-        {
-            moveAliensCoroutine = StartCoroutine(MoveAliens(delaysBeforeAliensMovement));
-        }
+        // if(moveAliensCoroutine == null)
+        // {
+        //     moveAliensCoroutine = StartCoroutine(MoveAliens(delaysBeforeAliensMovement));
+        // }
     }
     public void InstantiateAliensGroup(int startX, int startY, int[,] enemyMap )
     {
