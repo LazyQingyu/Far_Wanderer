@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8322062789427788543}
   - component: {fileID: 3759698399553616987}
   - component: {fileID: -8785243798085024850}
+  - component: {fileID: 483826795013837448}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -152,3 +153,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a82de7eea08001e5bd296d26b29cd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilCollision
+--- !u!114 &483826795013837448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868644875190298141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93eb552d189aadad1bae2ba2579d4312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectilBehaviour
+  playerPosition: {fileID: 6867819715967425746, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
+  projectilSpeed: 30

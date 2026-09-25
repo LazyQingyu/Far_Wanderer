@@ -34,5 +34,9 @@ public class AlianBehaviour : MonoBehaviour
         return myName;
     }
 
-        
+
+    void OollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collision in alian : "+gameObject.name);
+    }
 }

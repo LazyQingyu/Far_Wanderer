@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject projectil;
     Vector3 moveToNewPosition;
 
     public float playerSpeed;
@@ -31,13 +31,18 @@ public class PlayerBehaviour : MonoBehaviour
             moveToNewPosition = new Vector3(playerSpeed, 0, 0);
             isMoving = true;
         }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Instantiate(projectil, transform.position+Vector3.up, Quaternion.identity);
+        }
+        
     }
 
     void MovePlayer()
     {
         if (isMoving)
         {
-            Player.transform.position += moveToNewPosition;
+            transform.position += moveToNewPosition;
             isMoving = false;
         }
         

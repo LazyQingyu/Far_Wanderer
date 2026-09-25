@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2668610608424585290}
   - component: {fileID: 1299770144699366835}
   - component: {fileID: 532734753227456785}
+  - component: {fileID: 714393112808237325}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -171,3 +172,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 6
+--- !u!114 &714393112808237325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6867819715967425746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e184bb91fc955ab6b9228819aa2a6433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviour
+  Player: {fileID: 0}
+  projectil: {fileID: 5868644875190298141, guid: a52dee8bc6e2023bfa48b3681c29f26e, type: 3}
+  playerSpeed: 5

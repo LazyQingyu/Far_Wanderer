@@ -271,7 +271,6 @@ GameObject:
   - component: {fileID: 561145701}
   - component: {fileID: 561145700}
   - component: {fileID: 561145705}
-  - component: {fileID: 561145706}
   - component: {fileID: 561145708}
   - component: {fileID: 561145709}
   m_Layer: 5
@@ -378,23 +377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e184bb91fc955ab6b9228819aa2a6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviour
-  Player: {fileID: 1016490378}
+  projectil: {fileID: 0}
   playerSpeed: 0.5
---- !u!114 &561145706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561145699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93eb552d189aadad1bae2ba2579d4312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectilBehaviour
-  projectil: {fileID: 5868644875190298141, guid: a52dee8bc6e2023bfa48b3681c29f26e, type: 3}
-  playerPosition: {fileID: 1016490378}
-  projectilSpeed: 30
 --- !u!114 &561145708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,11 +538,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
---- !u!1 &1016490378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6867819715967425746, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
-  m_PrefabInstance: {fileID: 1016490377}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1185883954
 GameObject:
   m_ObjectHideFlags: 0
