@@ -35,6 +35,7 @@ public class ProjectilBehaviour : MonoBehaviour
         while (newProjectil.transform.position.y < 6.0f)
         {
             yield return new WaitForSeconds(0.01f);
+            Debug.Log("Projectil : "+ newProjectil);
             newProjectil.transform.position += new Vector3(0, projectilSpeed * Time.deltaTime, 0);
         }
         if(newProjectil != null){
