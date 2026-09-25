@@ -31,8 +31,6 @@ public class SpawnerBehaviour : MonoBehaviour
         Up
     };
 
-    List<GameObject> listAlien = new List<GameObject>();
-
     public GameObject firstEnemy;
     public GameObject secondEnemy;
     public GameObject thirdEnemy;
@@ -51,21 +49,23 @@ public class SpawnerBehaviour : MonoBehaviour
     {
         InstantiateAliensGroup(-3, 4, aliensMap2);
         moveAliensCoroutine = null;
-
     }
 
     private void FixedUpdate()
     {
-        // if(moveAliensCoroutine == null)
-        // {
-        //     moveAliensCoroutine = StartCoroutine(MoveAliens(delaysBeforeAliensMovement));
-        // }
+        //if(moveAliensCoroutine == null){moveAliensCoroutine = StartCoroutine(MoveAliens(delaysBeforeAliensMovement));}
     }
+
+    List<GameObject> RefreshAlienSwarm()
+    {
+        return CommonResource.instance.alienInSwarm;
+    }
+
     public void InstantiateAliensGroup(int startX, int startY, int[,] enemyMap )
     {
         Vector3 enemyPos;
         GameObject currentEnemy;
-
+        List<GameObject> listAlien = RefreshAlienSwarm();
         for (int i = 0; i < enemyMap.GetLength(0); i++) {
             for (int j = 0; j < enemyMap.GetLength(1); j++) {
 
@@ -74,12 +74,10 @@ public class SpawnerBehaviour : MonoBehaviour
                 
                 if (currentEnemy != null)
                 {
-                   listAlien.Add(Instantiate(currentEnemy, enemyPos, Quaternion.identity));
+                   Instantiate(currentEnemy, enemyPos, Quaternion.identity);
                 }
             }
-
         }
-
     }
 
     int givePosX(int startX, int i)
@@ -107,7 +105,6 @@ public class SpawnerBehaviour : MonoBehaviour
         }
     }
 
-    //Region AlienSwamMovement
 
     bool InZoneAllowed(float pos, string movement)
     {
@@ -121,35 +118,37 @@ public class SpawnerBehaviour : MonoBehaviour
         }
     }
 
-    void moveHorizontaly(List<GameObject> aliansWhoIsAlive, float moveBy)
+    void moveHorizontaly(float moveBy)
     {
+        List<GameObject> aliansWhoIsAlive = RefreshAlienSwarm();
         foreach(GameObject alien in aliansWhoIsAlive)
         {
             float currentAlienPosX = alien.transform.position.x;
             float currentAlienPosY = alien.transform.position.y;
-            if(InZoneAllowed(currentAlienPosX + moveBy, "Horizontal") && IsMyNextPosAllowed(alien, aliansWhoIsAlive, ("Horizontal",moveBy)))
+            if(InZoneAllowed(currentAlienPosX + moveBy, "Horizontal") && IsMyNextPosAllowed(alien, ("Horizontal",moveBy)))
             {
                 alien.transform.position = new Vector3(currentAlienPosX + moveBy, currentAlienPosY, 0);
             }
         }
     }
 
-    void moveVerticaly(List<GameObject> aliansWhoIsAlive, float moveBy)
+    void moveVerticaly( float moveBy)
     {
+        List<GameObject> aliansWhoIsAlive = RefreshAlienSwarm();
         foreach (GameObject alien in aliansWhoIsAlive)
         {
             float currentAlienPosX = alien.transform.position.x;
             float currentAlienPosY = alien.transform.position.y;
-            if (InZoneAllowed(currentAlienPosY + moveBy, "Verticaly") && IsMyNextPosAllowed(alien, aliansWhoIsAlive, ("Verticaly", moveBy)))
+            if (InZoneAllowed(currentAlienPosY + moveBy, "Verticaly") && IsMyNextPosAllowed(alien, ("Verticaly", moveBy)))
             {
                 alien.transform.position = new Vector3(currentAlienPosX, currentAlienPosY + moveBy, 0);
             }
         }
     }
 
-    bool IsMyNextPosAllowed(GameObject alien, List<GameObject> alienSwam, (string,float) move)
+    bool IsMyNextPosAllowed(GameObject alien, (string,float) move)
     {
-
+        List<GameObject> alienSwam = RefreshAlienSwarm();
         (float, float) alienNextPos = getNextPos(alien, move);
         foreach( GameObject oneAlienInSwarm in alienSwam)
         {
@@ -194,7 +193,6 @@ public class SpawnerBehaviour : MonoBehaviour
 
         return nextPos;
     }
-    //EndRegion AlienSwamMovement
 
     DirectionMovement MoveProbability()
     {
@@ -226,16 +224,16 @@ public class SpawnerBehaviour : MonoBehaviour
         switch (randomMove)
         {
             case DirectionMovement.Left:
-                moveHorizontaly(listAlien, -aliensMovementSpeed);
+                moveHorizontaly(-aliensMovementSpeed);
                 break;
             case DirectionMovement.Right:
-                moveHorizontaly(listAlien, aliensMovementSpeed);
+                moveHorizontaly(aliensMovementSpeed);
                 break;
             case DirectionMovement.Down:
-                moveVerticaly(listAlien, -aliensMovementSpeed);
+                moveVerticaly(-aliensMovementSpeed);
                 break;
             case DirectionMovement.Up:
-                moveVerticaly(listAlien, aliensMovementSpeed);
+                moveVerticaly(aliensMovementSpeed);
                 break;
         } 
     }
