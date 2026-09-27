@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 526ba4c62af096f9493680d648736b5a, type: 3}
-  m_Name: StayInCamera
-  m_EditorClassIdentifier: Assembly-CSharp::StayInCameraBehaviour
-  center: {x: 0, y: 0, z: 0}
-  radius: 12
+  m_Script: {fileID: 11500000, guid: edad10aa1a1a892e6b88b270f06977d0, type: 3}
+  m_Name: Avoidance
+  m_EditorClassIdentifier: Assembly-CSharp::AvoidanceBehaviour
+  filter: {fileID: 11400000, guid: aa7a43fdfe348416d9538b728bec2473, type: 2}

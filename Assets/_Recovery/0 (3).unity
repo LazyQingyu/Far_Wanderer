@@ -418,10 +418,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -5581885654606225518, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
-      propertyPath: AxeY
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6867819715967425746, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_Name
       value: SpaceShip
