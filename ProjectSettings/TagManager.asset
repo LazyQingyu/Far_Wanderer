@@ -6,7 +6,8 @@ TagManager:
   tags:
   - Undefined
   - Score
-  - projectil
+  - FlockAgent
+  - Projectil
   - Alien
   - AlienSoldier
   - AlienCaptain

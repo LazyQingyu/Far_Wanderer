@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8939403636670963686}
   m_Layer: 0
   m_Name: FlockAgent
-  m_TagString: Untagged
+  m_TagString: FlockAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

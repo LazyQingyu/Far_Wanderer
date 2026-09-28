@@ -7,7 +7,6 @@ public class ProjectilBehaviour : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
     void Start()
     {
@@ -17,7 +16,7 @@ public class ProjectilBehaviour : MonoBehaviour
     void moveProjectil()
     {   
         rb.linearVelocity = transform.right * projectilSpeed * Time.deltaTime;
-        Destroy(gameObject,3f);
+        Destroy(gameObject,4f);
     }
 
 }

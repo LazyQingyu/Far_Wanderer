@@ -43,10 +43,10 @@ GameObject:
   - component: {fileID: 2668610608424585290}
   - component: {fileID: 1299770144699366835}
   - component: {fileID: 532734753227456785}
-  - component: {fileID: 3870572026473016712}
   - component: {fileID: -5581885654606225518}
   - component: {fileID: 3661484537754551566}
   - component: {fileID: 2562245950646458701}
+  - component: {fileID: 8507230742482194921}
   m_Layer: 3
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -206,21 +206,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!114 &3870572026473016712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6867819715967425746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76ffa455492c66b50931775e46400ca4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
-  rotationSpeed: 720
+  m_Constraints: 4
 --- !u!114 &-5581885654606225518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd2f225fa16168d4a3f8eccd3902cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StayInsideCamera
-  AxeX: 9
-  AxeY: 5
+  AxeX: 8
+  AxeY: 4
 --- !u!114 &3661484537754551566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,3 +249,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 5
   rotationSpeed: 720
+--- !u!114 &8507230742482194921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6867819715967425746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a115e29c8b106521fb2fba84c208084a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionBehaviour

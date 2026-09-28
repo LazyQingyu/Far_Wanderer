@@ -51,14 +51,16 @@ public class Flock : MonoBehaviour
             newAgent.Initialize(this);
             agents.Add(newAgent);
     }
-    void removeDeadAgentFromFlocks()
+    void CollisionOnFlockAgent()
     {
 
         FlockAgent deadAgent = CommonResource.instance.deadFlockAgent;
-        agents.Remove(deadAgent);
-        Debug.Log(deadAgent.gameObject);
-        Destroy(deadAgent.gameObject);
- 
+        bool isAgentDead = agents.Remove(deadAgent);
+        if (isAgentDead)
+        {
+            CommonResource.instance.UpdateScore(10);
+            Destroy(deadAgent.gameObject);
+        }
     }
     void Awake()
     {
@@ -90,6 +92,6 @@ public class Flock : MonoBehaviour
             }
             agent.Move(move);
         }
-        removeDeadAgentFromFlocks();
+        CollisionOnFlockAgent();
     }
 }
