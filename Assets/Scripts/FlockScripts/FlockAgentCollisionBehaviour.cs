@@ -6,7 +6,8 @@ public class FlockAgentCollisionBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("projectil"))
         {
-            Debug.Log(gameObject.name+" get hit by a "+collision.gameObject.name+". I need help!!! BOOOOOOM");
+            CommonResource.instance.deadFlockAgent = gameObject.GetComponentInChildren<FlockAgent>();
+            
         }
     }
 }

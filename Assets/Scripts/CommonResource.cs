@@ -5,12 +5,12 @@ public class CommonResource : MonoBehaviour
 {
     public static CommonResource instance;
 
-    public List<GameObject> deadFlockAgent;
+    public FlockAgent deadFlockAgent;
 
     void Awake()
     {
         instance = this;
-        deadFlockAgent = new List<GameObject>();
+        
     }
 
 }

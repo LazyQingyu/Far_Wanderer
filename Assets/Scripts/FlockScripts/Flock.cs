@@ -21,44 +21,9 @@ public class Flock : MonoBehaviour
     float squareMaxSpeed;
     float squareNeighbourRadius;
     float squareAvoidanceRadius;
+    int agentId;
 
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
-
-    void Start()
-    {
-        squareMaxSpeed = maxSpeed * maxSpeed;
-        squareNeighbourRadius = neighbourRadius * neighbourRadius;
-        squareAvoidanceRadius = squareNeighbourRadius * avoidanceRadiusMultipier;
-
-        for (int i = 0; i < startingAgentCount; i++)
-        {
-            FlockAgent newAgent = Instantiate(
-                agentPrefab,
-                Random.insideUnitCircle * startingAgentCount * AgentDensity,
-                Quaternion.Euler(Vector3.forward * Random.Range(0f, 360f)),
-                transform
-            );
-            newAgent.name = "Agent " + i;
-            newAgent.Initialize(this);
-            agents.Add(newAgent);
-        }
-    }
-
-    void Update()
-    {
-        foreach (FlockAgent agent in agents)
-        {
-            List<Transform> context = GetNearbyObjects(agent);
-
-            Vector3 move = behaviour.CalculateMove(agent, context, this);
-            move *= driveFactor;
-            if (move.sqrMagnitude > squareMaxSpeed)
-            {
-                move = move.normalized * maxSpeed;
-            }
-            agent.Move(move);
-        }
-    }
 
     List<Transform> GetNearbyObjects(FlockAgent agent)
     {
@@ -72,5 +37,59 @@ public class Flock : MonoBehaviour
             }
         }
         return context;
+    }
+    void CreateNewAgent()
+    {
+        FlockAgent newAgent = Instantiate(
+                agentPrefab,
+                Random.insideUnitCircle * agentId * AgentDensity,
+                Quaternion.Euler(Vector3.forward * Random.Range(0f, 360f)),
+                transform
+            );
+            newAgent.name = "Agent " + agentId;
+            agentId++;
+            newAgent.Initialize(this);
+            agents.Add(newAgent);
+    }
+    void removeDeadAgentFromFlocks()
+    {
+
+        FlockAgent deadAgent = CommonResource.instance.deadFlockAgent;
+        agents.Remove(deadAgent);
+        Debug.Log(deadAgent.gameObject);
+        Destroy(deadAgent.gameObject);
+ 
+    }
+    void Awake()
+    {
+        squareMaxSpeed = maxSpeed * maxSpeed;
+        squareNeighbourRadius = neighbourRadius * neighbourRadius;
+        squareAvoidanceRadius = squareNeighbourRadius * avoidanceRadiusMultipier;
+        agentId = 0;
+    }
+    void Start()
+    {
+        for (int i = 0; i < startingAgentCount; i++)
+        {
+            CreateNewAgent();
+        }
+    }
+
+    void Update()
+    {
+        
+        foreach (FlockAgent agent in agents)
+        {
+            List<Transform> context = GetNearbyObjects(agent);
+
+            Vector3 move = behaviour.CalculateMove(agent, context, this);
+            move *= driveFactor;
+            if (move.sqrMagnitude > squareMaxSpeed)
+            {
+                move = move.normalized * maxSpeed;
+            }
+            agent.Move(move);
+        }
+        removeDeadAgentFromFlocks();
     }
 }

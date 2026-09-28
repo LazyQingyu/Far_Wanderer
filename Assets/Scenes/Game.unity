@@ -270,9 +270,7 @@ GameObject:
   - component: {fileID: 561145702}
   - component: {fileID: 561145701}
   - component: {fileID: 561145700}
-  - component: {fileID: 561145705}
   - component: {fileID: 561145708}
-  - component: {fileID: 561145709}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -365,18 +363,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &561145705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561145699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e184bb91fc955ab6b9228819aa2a6433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviour
 --- !u!114 &561145708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,23 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611637755b933a54cae37b77869976f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CommonResource
-  alienInSwarm: []
-  listAliansPosition: []
-  firstEnemy: {fileID: 460781742274897300, guid: 0081162a34a7cd04bb0ca307db3f5b9b, type: 3}
-  secondEnemy: {fileID: 1662464861664286642, guid: facaa16e86bd3474fb4c33c7a41ce3fc, type: 3}
-  thirdEnemy: {fileID: 555527744897418365, guid: bd93400d7984fbb4a8adad8cabf8988d, type: 3}
---- !u!114 &561145709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561145699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29afe9ea21309d54dbd133667991a564, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlianSwarmBehaviour
+  deadFlockAgent: {fileID: 0}
 --- !u!1001 &1016490377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -420,7 +390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6867819715967425746, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8457519092428892413, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_LocalPosition.x
@@ -462,7 +432,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3870572026473016712, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -851,7 +822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flock
   agentPrefab: {fileID: 2397785304475113653, guid: b1752373db70da7e29849174f92f7a1f, type: 3}
   behaviour: {fileID: 11400000, guid: 7f3f0c48116a3aece8f19b72fd4174f4, type: 2}
-  startingAgentCount: 75
+  startingAgentCount: 321
   driveFactor: 15
   maxSpeed: 5
   neighbourRadius: 1.5

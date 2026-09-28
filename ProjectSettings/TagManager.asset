@@ -5,10 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Undefined
+  - Score
+  - projectil
   - Alien
   - AlienSoldier
   - AlienCaptain
-  - Score
   layers:
   - Default
   - TransparentFX
