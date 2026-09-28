@@ -435,7 +435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8457519092428892413, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 8457519092428892413, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -858,9 +858,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flock
   agentPrefab: {fileID: 2397785304475113653, guid: b1752373db70da7e29849174f92f7a1f, type: 3}
   behaviour: {fileID: 11400000, guid: 7f3f0c48116a3aece8f19b72fd4174f4, type: 2}
-  startingAgentCount: 150
+  startingAgentCount: 250
   driveFactor: 15
-  maxSpeed: 5
+  maxSpeed: 8
   neighbourRadius: 1.5
   avoidanceRadiusMultipier: 5
 --- !u!4 &1982212877
