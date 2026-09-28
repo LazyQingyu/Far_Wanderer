@@ -377,10 +377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e184bb91fc955ab6b9228819aa2a6433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviour
-  projectil: {fileID: 0}
-  moveToNextPosition: {x: 0, y: 0, z: 0}
-  playerSpeed: 0.5
-  isMoving: 0
 --- !u!114 &561145708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,13 +414,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -5581885654606225518, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
-      propertyPath: AxeY
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6867819715967425746, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_Name
       value: SpaceShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867819715967425746, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8457519092428892413, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_LocalPosition.x
@@ -432,7 +428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8457519092428892413, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8457519092428892413, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -840,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1982212876
 MonoBehaviour:
   m_ObjectHideFlags: 0
