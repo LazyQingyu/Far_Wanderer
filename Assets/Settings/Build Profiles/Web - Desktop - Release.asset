@@ -812,5 +812,5 @@ MonoBehaviour:
         m_AdaptivePerformanceEnabled: 0
         m_CodeOptimization: 3
         m_WebGLClientBrowserPath: 
-        m_WebGLClientBrowserType: 0
+        m_WebGLClientBrowserType: 3
         m_WebGLTextureSubtarget: 1
