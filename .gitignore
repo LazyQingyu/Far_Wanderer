@@ -120,4 +120,4 @@ InitTestScene*.unity*
 AnchorpointEditor.csproj
 
 #Sound
-.Sounds
+.Assets/Sounds/
