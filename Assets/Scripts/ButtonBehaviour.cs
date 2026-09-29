@@ -13,4 +13,9 @@ public class ButtonBehaviour : MonoBehaviour
         SceneManager.LoadSceneAsync("ScoreBoard");
     }
 
+    public void GoToStartScreen()
+    {
+        SceneManager.LoadSceneAsync("TitleMenu");
+    }
+
 }

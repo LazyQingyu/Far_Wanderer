@@ -15,8 +15,8 @@ public class ProjectilBehaviour : MonoBehaviour
 
     void moveProjectil()
     {   
-        rb.linearVelocity = transform.right * projectilSpeed * Time.deltaTime;
-        Destroy(gameObject,4f);
+        rb.linearVelocity = transform.up * projectilSpeed;
+        Destroy(gameObject,2f);
     }
 
 }

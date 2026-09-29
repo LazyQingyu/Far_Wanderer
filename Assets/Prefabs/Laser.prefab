@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a82de7eea08001e5bd296d26b29cd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilCollision
-  addTime: 1
+  addTime: 0.2
 --- !u!114 &483826795013837448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93eb552d189aadad1bae2ba2579d4312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilBehaviour
-  projectilSpeed: 1520
+  projectilSpeed: 30
 --- !u!58 &986340372505161825
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -413,21 +413,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 532734753227456785, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
-      propertyPath: m_LinearDamping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2562245950646458701, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
-      propertyPath: moveSpeed
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 6867819715967425746, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_Name
       value: SpaceShip
-      objectReference: {fileID: 0}
-    - target: {fileID: 6867819715967425746, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8457519092428892413, guid: 0545797c9d5c8e84488f089ea5ca5c40, type: 3}
       propertyPath: m_LocalPosition.x

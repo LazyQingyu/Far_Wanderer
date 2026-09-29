@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Timer : MonoBehaviour
 {
@@ -16,16 +18,27 @@ public class Timer : MonoBehaviour
     void Update()
     {
         GetCurrentTime();
-        if(remainingTime > 0)
-        {
-            remainingTime -= Time.deltaTime;
-        }else if (remainingTime < 0)
+        if(remainingTime < 0)
         {
             remainingTime = 0;
+           
+        }else if (remainingTime > 0)
+        {
+            remainingTime -= Time.deltaTime;
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         CommonResource.instance.UpdateTime(remainingTime);
+        
+        if(remainingTime == 0)
+        {
+             GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        SceneManager.LoadSceneAsync("ScoreBoard");
     }
 }
