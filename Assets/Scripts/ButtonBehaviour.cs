@@ -18,4 +18,8 @@ public class ButtonBehaviour : MonoBehaviour
         SceneManager.LoadSceneAsync("TitleMenu");
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

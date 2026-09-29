@@ -118,3 +118,6 @@ InitTestScene*.unity*
 #Anchorpoint 
 /Packages/com.anchorpoint.sourcecontrol/
 AnchorpointEditor.csproj
+
+#Sound
+.Sounds/

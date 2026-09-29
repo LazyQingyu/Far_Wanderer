@@ -23,6 +23,8 @@ public class Flock : MonoBehaviour
     float squareAvoidanceRadius;
     int agentId;
 
+    public AudioSource explosionAgentSFX;
+
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
 
     List<Transform> GetNearbyObjects(FlockAgent agent)
@@ -59,6 +61,7 @@ public class Flock : MonoBehaviour
         bool isAgentDead = agents.Remove(deadAgent);
         if (isAgentDead)
         {
+            explosionAgentSFX.Play();
             CommonResource.instance.UpdateScore(10);
             Destroy(deadAgent.gameObject);
         }

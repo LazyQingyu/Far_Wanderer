@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CommonResource : MonoBehaviour
 {
@@ -16,6 +14,12 @@ public class CommonResource : MonoBehaviour
     {
         instance = this;
         score = 0;
+
+        if(PlayerPrefs.GetInt("HighScore") == 0)
+        {
+            PlayerPrefs.SetInt("HighScore", 0);
+        }
+        
     }
 
     public float GetTime(){ return time; }
@@ -24,4 +28,10 @@ public class CommonResource : MonoBehaviour
     public void RemoveTime(float minusTime){ time-= minusTime;}
     public int GetScore() { return score; }
     public void UpdateScore(int point){ score+=point;}
+    public void GameOver()
+    {
+        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.Save();
+        SceneManager.LoadSceneAsync("ScoreBoard");
+    }
 }

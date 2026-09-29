@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a82de7eea08001e5bd296d26b29cd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilCollision
-  addTime: 0.2
+  addTime: 0.5
 --- !u!114 &483826795013837448
 MonoBehaviour:
   m_ObjectHideFlags: 0
